@@ -1,0 +1,25 @@
+services:
+  isaac-lab-base:
+    environment:
+      ISAACSIM_PATH: /workspace/isaaclab/_isaac_sim
+      OMNI_KIT_ALLOW_ROOT: "1"
+      PYTHONPATH: /workspace/external/isaaclab_rh56dfx/src
+    volumes:
+      - type: bind
+        source: ../../isaaclab_rh56dfx
+        target: /workspace/external/isaaclab_rh56dfx
+      - type: bind
+        source: ../../rh56dfx_description
+        target: /workspace/external/rh56dfx_description
+  isaac-lab-ros2:
+    environment:
+      ISAACSIM_PATH: /workspace/isaaclab/_isaac_sim
+      OMNI_KIT_ALLOW_ROOT: "1"
+      PYTHONPATH: /workspace/external/isaaclab_rh56dfx/src
+    volumes:
+      - type: bind
+        source: ../../isaaclab_rh56dfx
+        target: /workspace/external/isaaclab_rh56dfx
+      - type: bind
+        source: ../../rh56dfx_description
+        target: /workspace/external/rh56dfx_description

@@ -1,0 +1,30 @@
+[project]
+name = "isaaclab-rh56dfx"
+version = "0.1.0"
+description = "External Isaac Lab project for the Inspire Robots RH56DFX hand"
+readme = "README.md"
+requires-python = "==3.11.*"
+dependencies = [
+    "isaaclab[all,isaacsim]==2.3.0",
+    "torch==2.7.0",
+]
+
+[project.scripts]
+rh56_random_agent = "isaaclab_rh56dfx.scripts.random_agent:main"
+rh56_list_envs = "isaaclab_rh56dfx.scripts.list_envs:main"
+
+[tool.uv]
+index-strategy = "unsafe-best-match"
+environments = [
+  "sys_platform == 'linux' and implementation_name == 'cpython' and python_version == '3.11'",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.nvidia.com/"
+
+[[tool.uv.index]]
+url = "https://download.pytorch.org/whl/cu128"
+
+[build-system]
+requires = ["uv_build>=0.8.21,<0.9.0"]
+build-backend = "uv_build"
