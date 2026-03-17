@@ -94,15 +94,6 @@ def _sanitize_generated_urdf(urdf_text: str, side: str) -> str:
         elif child.tag == "joint" and child.attrib.get("name") == anchor_joint_name:
             root.remove(child)
 
-    # Rubber links are fixed cosmetic add-ons with very tight clearances around the fingers.
-    # Keeping their collision meshes makes blanket self-collision significantly less stable.
-    prefix = f"{side}_"
-    for link in root.findall("link"):
-        link_name = link.attrib.get("name", "")
-        if link_name.startswith(prefix) and "_rubber_" in link_name:
-            for collision in list(link.findall("collision")):
-                link.remove(collision)
-
     # Strip stray non-whitespace text emitted near top-level nodes by xacro.
     for child in root:
         if child.tail and not child.tail.isspace():

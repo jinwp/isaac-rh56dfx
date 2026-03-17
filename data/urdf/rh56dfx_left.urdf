@@ -245,6 +245,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_thumb_rubber_1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_thumb_rubber_1_joint" type="fixed">
@@ -313,6 +322,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_thumb_rubber_2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_thumb_rubber_2_joint" type="fixed">
@@ -379,6 +397,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_thumb_rubber_3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_thumb_rubber_3_joint" type="fixed">
@@ -516,6 +543,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_index_rubber_1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_index_rubber_1_joint" type="fixed">
@@ -583,6 +619,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_index_rubber_2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_index_rubber_2_joint" type="fixed">
@@ -720,6 +765,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_middle_rubber_1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_middle_rubber_1_joint" type="fixed">
@@ -786,6 +840,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_middle_rubber_2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_middle_rubber_2_joint" type="fixed">
@@ -923,6 +986,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_ring_rubber_1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_ring_rubber_1_joint" type="fixed">
@@ -989,6 +1061,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_ring_rubber_2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_ring_rubber_2_joint" type="fixed">
@@ -1126,6 +1207,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_little_rubber_1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_little_rubber_1_joint" type="fixed">
@@ -1192,6 +1282,15 @@
       </material>
     </visual>
     <!-- ================= COLLISION ================= -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="/workspace/external/rh56dfx_description/meshes/left/collision/left_little_rubber_2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0 0 1" />
+      </material>
+    </collision>
   </link>
   <!-- ================= JOINT ================= -->
   <joint name="left_little_rubber_2_joint" type="fixed">
