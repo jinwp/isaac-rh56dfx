@@ -33,6 +33,7 @@ class RH56DFXLeftPlayEnvCfg(RH56DFXPlayEnvCfg):
             scale=1.0,
             rescale_to_limits=True,
         )
+        self.observations.policy.enable_corruption = False
         self.observations.policy.joint_pos.params["asset_cfg"] = SceneEntityCfg(
             "robot", joint_names=left_actuated, preserve_order=True
         )
@@ -59,6 +60,7 @@ class RH56DFXRightPlayEnvCfg(RH56DFXPlayEnvCfg):
             scale=1.0,
             rescale_to_limits=True,
         )
+        self.observations.policy.enable_corruption = False
         self.observations.policy.joint_pos.params["asset_cfg"] = SceneEntityCfg(
             "robot", joint_names=right_actuated, preserve_order=True
         )

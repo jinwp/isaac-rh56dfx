@@ -58,8 +58,9 @@ def _make_hand_cfg(side: Side, urdf_path: str, usd_subdir: str) -> ArticulationC
             merge_fixed_joints=False,
             convert_mimic_joints_to_normal_joints=False,
             make_instanceable=False,
+            self_collision=True,
             articulation_props=sim_utils.ArticulationRootPropertiesCfg(
-                enabled_self_collisions=False,
+                enabled_self_collisions=True,
                 solver_position_iteration_count=8,
                 solver_velocity_iteration_count=4,
             ),

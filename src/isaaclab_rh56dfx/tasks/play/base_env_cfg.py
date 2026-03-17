@@ -16,7 +16,7 @@ from isaaclab.utils.noise import AdditiveUniformNoiseCfg as Unoise
 
 @configclass
 class RH56DFXSceneCfg(InteractiveSceneCfg):
-    """Minimal scene used to play the RH56DFX hand in multiple vectorized environments."""
+    """Minimal RH56DFX debug scene used for multi-environment hand playback."""
 
     ground = AssetBaseCfg(
         prim_path="/World/ground",
@@ -62,7 +62,7 @@ class RH56DFXPlayEnvCfg(ManagerBasedEnvCfg):
 
     scene: RH56DFXSceneCfg = RH56DFXSceneCfg(
         num_envs=64,
-        env_spacing=1.25,
+        env_spacing=0.75,
         replicate_physics=True,
         clone_in_fabric=False,
     )
@@ -73,5 +73,5 @@ class RH56DFXPlayEnvCfg(ManagerBasedEnvCfg):
         self.decimation = 4
         self.sim.dt = 1.0 / 120.0
         self.sim.render_interval = self.decimation
-        self.viewer.eye = (3.5, 3.5, 2.0)
+        self.viewer.eye = (2.6, 2.6, 1.7)
         self.viewer.lookat = (0.0, 0.0, 0.3)
