@@ -13,6 +13,8 @@ from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.noise import AdditiveUniformNoiseCfg as Unoise
 
+from isaaclab_rh56dfx.robots import control_decimation, physics_dt, sim_physics_material_cfg, sim_physx_cfg
+
 
 @configclass
 class RH56DFXSceneCfg(InteractiveSceneCfg):
@@ -20,7 +22,7 @@ class RH56DFXSceneCfg(InteractiveSceneCfg):
 
     ground = AssetBaseCfg(
         prim_path="/World/ground",
-        spawn=sim_utils.GroundPlaneCfg(),
+        spawn=sim_utils.GroundPlaneCfg(physics_material=sim_physics_material_cfg()),
         init_state=AssetBaseCfg.InitialStateCfg(pos=(0.0, 0.0, 0.0)),
     )
 
@@ -70,8 +72,10 @@ class RH56DFXPlayEnvCfg(ManagerBasedEnvCfg):
     actions: ActionsCfg = ActionsCfg()
 
     def __post_init__(self):
-        self.decimation = 4
-        self.sim.dt = 1.0 / 120.0
+        self.decimation = control_decimation()
+        self.sim.dt = physics_dt()
         self.sim.render_interval = self.decimation
+        self.sim.physics_material = sim_physics_material_cfg()
+        self.sim.physx = sim_physx_cfg()
         self.viewer.eye = (2.6, 2.6, 1.7)
         self.viewer.lookat = (0.0, 0.0, 0.3)

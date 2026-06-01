@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 class Rh56dfxMimicJointPositionAction(ActionTerm):
-    """Map an 8-DoF RH56DFX action into full joint targets, including mimic joints."""
+    """Map a 6-DoF RH56DFX command into full joint targets, including mimic joints."""
 
     _asset: Articulation
 
@@ -77,6 +77,19 @@ class Rh56dfxMimicJointPositionAction(ActionTerm):
             )
             self._clip[:, index_list] = torch.tensor(value_list, device=self.device)
 
+        self._joint_lower_limits = self._asset.data.soft_joint_pos_limits[:, self._actuated_joint_ids, 0].clone()
+        self._joint_upper_limits = self._asset.data.soft_joint_pos_limits[:, self._actuated_joint_ids, 1].clone()
+        if cfg.joint_limits is not None:
+            index_list, _, value_list = string_utils.resolve_matching_names_values(
+                cfg.joint_limits, self._actuated_joint_names, preserve_order=cfg.preserve_order
+            )
+            self._joint_lower_limits[:, index_list] = torch.tensor(
+                [value[0] for value in value_list], device=self.device
+            )
+            self._joint_upper_limits[:, index_list] = torch.tensor(
+                [value[1] for value in value_list], device=self.device
+            )
+
     @property
     def action_dim(self) -> int:
         return self._num_actions
@@ -100,8 +113,8 @@ class Rh56dfxMimicJointPositionAction(ActionTerm):
             clamped_actions = self._processed_actions.clamp(-1.0, 1.0)
             self._processed_actions[:] = math_utils.unscale_transform(
                 clamped_actions,
-                self._asset.data.soft_joint_pos_limits[:, self._actuated_joint_ids, 0],
-                self._asset.data.soft_joint_pos_limits[:, self._actuated_joint_ids, 1],
+                self._joint_lower_limits,
+                self._joint_upper_limits,
             )
 
     def apply_actions(self):
@@ -109,6 +122,11 @@ class Rh56dfxMimicJointPositionAction(ActionTerm):
         self._full_targets[:, self._actuated_joint_ids] = self._processed_actions
         for child_idx, parent_idx, multiplier, offset in self._mimic_pairs:
             self._full_targets[:, child_idx] = multiplier * self._full_targets[:, parent_idx] + offset
+        self._full_targets[:] = math_utils.saturate(
+            self._full_targets,
+            self._asset.data.soft_joint_pos_limits[:, :, 0],
+            self._asset.data.soft_joint_pos_limits[:, :, 1],
+        )
         self._asset.set_joint_position_target(self._full_targets)
 
     def reset(self, env_ids: Sequence[int] | None = None) -> None:
@@ -129,3 +147,4 @@ class Rh56dfxMimicJointPositionActionCfg(ActionTermCfg):
     scale: float | dict[str, float] = 1.0
     rescale_to_limits: bool = True
     preserve_order: bool = True
+    joint_limits: dict[str, tuple[float, float]] | None = None

@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-"""Run a scripted thumb-to-pinky finger sequence on an RH56DFX play environment."""
+"""Run a scripted RH56DFX 6-DoF finger sequence on a play environment."""
 
 import argparse
 
@@ -30,11 +30,12 @@ from isaaclab_tasks.utils import parse_env_cfg
 
 
 _FINGER_SEQUENCE = (
-    ("thumb", (2, 3)),
-    ("index", (4,)),
-    ("middle", (5,)),
-    ("ring", (6,)),
-    ("little", (7,)),
+    ("little", (0,)),
+    ("ring", (1,)),
+    ("middle", (2,)),
+    ("index", (3,)),
+    ("thumb_bend", (4,)),
+    ("thumb_rotation", (5,)),
 )
 _SETTLE_STEPS = 20
 _OPEN_STEPS = 30
@@ -54,13 +55,13 @@ def _scripted_actions(action_template: torch.Tensor, step_count: int) -> torch.T
     """Return normalized actions for a thumb-to-pinky open/close sequence.
 
     Action order is:
-    0 wrist_yaw, 1 hand_base, 2 thumb_1, 3 thumb_2, 4 index_1, 5 middle_1, 6 ring_1, 7 little_1.
-    Wrist/base stay neutral while fingers move. Finger actions use +1 for closed and -1 for open.
+    0 little, 1 ring, 2 middle, 3 index, 4 thumb_bend, 5 thumb_rotation.
+    Finger actions use +1 for closed and -1 for open.
     """
 
     actions = torch.zeros_like(action_template)
     # Keep all fingers closed by default, then open/close one finger group at a time.
-    actions[:, 2:] = 1.0
+    actions[:] = 1.0
 
     cycle_step = step_count % _TOTAL_SEQUENCE_STEPS
     if cycle_step < _SETTLE_STEPS:
